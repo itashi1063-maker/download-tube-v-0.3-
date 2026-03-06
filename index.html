@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>محمل الفيديو</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+overflow:hidden;
+}
+
+/* القمر */
+
+body::before{
+content:"🌙";
+position:absolute;
+top:30px;
+right:50px;
+font-size:80px;
+animation:moonGlow 3s infinite alternate;
+}
+
+@keyframes moonGlow{
+from{filter:drop-shadow(0 0 10px gold);}
+to{filter:drop-shadow(0 0 40px gold);}
+}
+
+/* النجوم */
+
+.star{
+position:absolute;
+color:white;
+font-size:18px;
+animation:twinkle 2s infinite;
+}
+
+.s1{top:10%;left:20%;}
+.s2{top:25%;left:80%;}
+.s3{top:40%;left:10%;}
+.s4{top:60%;left:75%;}
+.s5{top:80%;left:30%;}
+.s6{top:15%;left:50%;}
+.s7{top:70%;left:60%;}
+
+@keyframes twinkle{
+0%{opacity:0.2}
+50%{opacity:1}
+100%{opacity:0.2}
+}
+
+/* الفوانيس */
+
+.lantern{
+position:absolute;
+font-size:45px;
+animation:lanternGlow 2s infinite alternate;
+}
+
+.l1{top:5%;left:15%;}
+.l2{top:8%;right:15%;}
+.l3{top:12%;left:50%;}
+.l4{top:20%;right:40%;}
+.l5{top:15%;left:35%;}
+
+@keyframes lanternGlow{
+from{filter:drop-shadow(0 0 5px orange);}
+to{filter:drop-shadow(0 0 20px gold);}
+}
+
+/* الصندوق */
+
+.container{
+background:white;
+padding:35px;
+border-radius:15px;
+width:420px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+border:3px solid #d4af37;
+z-index:2;
+}
+
+h2{
+color:#1a2a6c;
+margin-bottom:10px;
+}
+
+p{
+color:#666;
+}
+
+.input-group{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+input{
+padding:12px;
+border:2px solid #c5a059;
+border-radius:8px;
+}
+
+button{
+padding:12px;
+background:#065535;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#04432a;
+}
+
+#statusMessage{
+margin-top:15px;
+}
+
+.support{
+margin-top:25px;
+}
+
+.support a{
+background:#d4af37;
+color:black;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- الفوانيس -->
+
+<div class="lantern l1">🏮</div>
+<div class="lantern l2">🏮</div>
+<div class="lantern l3">🏮</div>
+<div class="lantern l4">🏮</div>
+<div class="lantern l5">🏮</div>
+
+<!-- النجوم -->
+
+<div class="star s1">✦</div>
+<div class="star s2">✦</div>
+<div class="star s3">✦</div>
+<div class="star s4">✦</div>
+<div class="star s5">✦</div>
+<div class="star s6">✦</div>
+<div class="star s7">✦</div>
+
+<div class="container">
+
+<h2>تنزيل الفيديو</h2>
+
+<p>أدخل رابط الفيديو المباشر</p>
+
+<div class="input-group">
+
+<input type="text" id="videoUrl" placeholder="ضع الرابط هنا">
+
+<button onclick="downloadVideo()">تحميل الآن</button>
+
+</div>
+
+<div id="statusMessage"></div>
+
+<div class="support">
+
+<a href="#">☕ دعم المنشئ</a>
+
+</div>
+
+</div>
+
+<script>
+
+function downloadVideo(){
+
+let url=document.getElementById("videoUrl").value
+let status=document.getElementById("statusMessage")
+
+if(url===""){
+status.innerText="يرجى إدخال رابط فيديو"
+return
+}
+
+status.innerText="جاري بدء التحميل..."
+
+let a=document.createElement("a")
+a.href=url
+a.download="video.mp4"
+
+document.body.appendChild(a)
+a.click()
+document.body.removeChild(a)
+
+status.innerText="تم بدء التحميل"
+
+}
+
+</script>
+
+</body>
+</html>
